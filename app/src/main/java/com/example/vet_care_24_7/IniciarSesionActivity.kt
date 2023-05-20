@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.vet_care_24_7.databinding.ActivityIniciarSesionBinding
-import com.example.vet_care_24_7.databinding.ActivityMapsBinding
+import com.example.vet_care_24_7.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth

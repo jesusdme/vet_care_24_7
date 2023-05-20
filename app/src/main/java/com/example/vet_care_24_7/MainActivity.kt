@@ -60,12 +60,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startMapsActivity(currentUser)
+            menu(currentUser)
         }
     }
 
-    private fun startMapsActivity(currentUser: FirebaseUser?) {
-        val intent = Intent(this, MapsActivity::class.java)
+    private fun menu(currentUser: FirebaseUser?) {
+        val intent = Intent(this, menu_principal::class.java)
         if (currentUser != null) {
             intent.putExtra("user", currentUser.email)
         }
