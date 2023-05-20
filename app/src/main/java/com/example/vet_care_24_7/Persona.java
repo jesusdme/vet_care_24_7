@@ -82,7 +82,7 @@ public class Persona {
         return tipo;
     }
 
-    public void setTipo(String uid) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 }

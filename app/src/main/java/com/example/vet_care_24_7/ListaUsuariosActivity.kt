@@ -52,7 +52,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
                 for (usuarioSnapshot in dataSnapshot.children) {
                     val usuario = usuarioSnapshot.getValue(Persona::class.java)
                     if (usuario != null) {
-                        if(usuario.disponible)
+                        if(usuario.disponible && usuario.tipo=="Vet")
                             usuario?.let {
                                 listaUsuarios.add(usuario)
                             }

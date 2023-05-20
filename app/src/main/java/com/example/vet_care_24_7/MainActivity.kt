@@ -110,7 +110,6 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     val builder = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.diablillo)
                         .setContentTitle(getString(R.string.Usuario_conectado))
                         .setContentText("${persona.nombre} ahora está disponible")
                         .setContentIntent(pendingIntent) // Asignamos el PendingIntent a la notificación
