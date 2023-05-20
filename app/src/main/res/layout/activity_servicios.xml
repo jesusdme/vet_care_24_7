@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/Consultas"
         android:layout_width="411dp"
         android:layout_height="41dp"
         android:layout_marginTop="12dp"
@@ -36,120 +36,120 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/Vac"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Vacunación"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/Consultas" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/Hosp"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Hospitalización"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/Vac" />
 
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/Cir"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Cirujía"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toBottomOf="@+id/Hosp" />
 
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/An"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Análisis clínicos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+        app:layout_constraintTop_toBottomOf="@+id/Cir" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/Trata"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Tratamiento nutricional"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+        app:layout_constraintTop_toBottomOf="@+id/An" />
 
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/Con"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Control de parasitos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+        app:layout_constraintTop_toBottomOf="@+id/Trata" />
 
 
     <CheckBox
-        android:id="@+id/checkBox8"
+        android:id="@+id/Despara"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Desparacitación"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+        app:layout_constraintTop_toBottomOf="@+id/Con" />
 
     <CheckBox
-        android:id="@+id/checkBox9"
+        android:id="@+id/Urgen"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Urgencias"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+        app:layout_constraintTop_toBottomOf="@+id/Despara" />
 
 
     <CheckBox
-        android:id="@+id/checkBox10"
+        android:id="@+id/Dermatol"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Dermatología"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+        app:layout_constraintTop_toBottomOf="@+id/Urgen" />
 
 
     <CheckBox
-        android:id="@+id/checkBox11"
+        android:id="@+id/Geria"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Geriatría veterinaria"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
+        app:layout_constraintTop_toBottomOf="@+id/Dermatol" />
 
     <CheckBox
-        android:id="@+id/checkBox12"
+        android:id="@+id/general"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="Atención general"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
+        app:layout_constraintTop_toBottomOf="@+id/Geria" />
 
     <Button
         android:id="@+id/cancelarVet"
@@ -160,7 +160,7 @@
         app:layout_constraintEnd_toStartOf="@+id/enviarVet"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
+        app:layout_constraintTop_toBottomOf="@+id/general" />
 
     <Button
         android:id="@+id/enviarVet"
@@ -171,7 +171,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
+        app:layout_constraintTop_toBottomOf="@+id/general" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.vet_care_24_7;
 
+import java.util.List;
+
 public class Persona {
     private String uid;
     private String nombre;
@@ -15,6 +17,7 @@ public class Persona {
 
     private long celular;
 
+    private List<String> servicio;
 
     public Persona() {
 
@@ -97,5 +100,15 @@ public class Persona {
     public void setCelular(long celular) {
         this.celular = celular;
     }
+
+    public void setServicio(List<String> servicio) {
+        this.servicio = servicio;
+    }
+
+    public List<String> getServicio() {
+        return servicio;
+    }
+
+
 }
 

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        agregarListenerDeEventos()
+        //agregarListenerDeEventos()
 
         auth = Firebase.auth
         val iniciar = findViewById<Button>(R.id.button5)
@@ -115,9 +115,9 @@ class MainActivity : AppCompatActivity() {
                         .setContentIntent(pendingIntent) // Asignamos el PendingIntent a la notificación
                         .setAutoCancel(true) // La notificación se eliminará al hacer clic en ella
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    notificationManager.notify(NOTIFICATION_ID, builder.build())
                     myRef02.child(snapshot.key!!).child("toastMostrado").setValue(true)
                 }
+
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {

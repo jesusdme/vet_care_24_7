@@ -267,18 +267,20 @@ class RegistrarseActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful)
                         val user = auth.currentUser
+                        val stringList = listOf(".")
                         if (user != null) {
                             // Update user info
                             val myUser = Persona()
                             myUser.nombre = binding.nombre.text.toString()
                             myUser.apellido = binding.apellido.text.toString()
                             myUser.numIdentificacion = binding.identificacion.text.toString().toDouble()
-                            myUser.latitud = 4.8090
-                            myUser.longitud = -74.1690
+                            myUser.latitud = 4.8093
+                            myUser.longitud = -74.1691
                             myUser.disponible = true
                             myUser.toastMostrado = false
                             myUser.tipo = tipoUser
                             myUser.celular= binding.editTextPhone.text.toString().toLong()
+                            myUser.servicio = stringList
                             
                             myUser.uid = auth.currentUser!!.uid
                             myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
