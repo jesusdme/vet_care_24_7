@@ -10,6 +10,9 @@ public class Persona {
     private boolean disponible;
 
     private boolean toastMostrado;
+
+    private String tipo;
+
     public Persona() {
 
     }
@@ -72,6 +75,15 @@ public class Persona {
 
     public void setToastMostrado(boolean toastMostrado) {
         this.toastMostrado = toastMostrado;
+    }
+
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String uid) {
+        this.tipo = tipo;
     }
 }
 

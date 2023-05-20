@@ -97,6 +97,8 @@ class RegistrarseActivity : AppCompatActivity() {
         }
 
         val registrar = findViewById<Button>(R.id.button)
+        val registrarV = findViewById<Button>(R.id.buttonVet)
+
         registrar.setOnClickListener() {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -122,7 +124,35 @@ class RegistrarseActivity : AppCompatActivity() {
             } else {
                 val email = binding.editTextTextEmailAddress2.text.toString()
                 val password = binding.editTextTextPassword.text.toString()
-                createUser(email, password)
+                createUser(email, password, "cliente")
+            }
+        }
+        registrarV.setOnClickListener() {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ),
+                    REQUEST_CODE_LOCATION_PERMISSION
+                )
+            } else {
+                val email = binding.editTextTextEmailAddress2.text.toString()
+                val password = binding.editTextTextPassword.text.toString()
+                createUser(email, password,"aspiranteVet")
             }
         }
 
@@ -161,7 +191,7 @@ class RegistrarseActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 val email = binding.editTextTextEmailAddress2.text.toString()
                 val password = binding.editTextTextPassword.text.toString()
-                createUser(email, password)
+                //createUser(email, password,)---------------------------------------------------------------------------------------------
             } else {
                 Toast.makeText(
                     this,
@@ -218,7 +248,7 @@ class RegistrarseActivity : AppCompatActivity() {
         return valid
     }
 
-    private fun createUser(email: String, password: String) {
+    private fun createUser(email: String, password: String, tipoUser: String) {
         if (validateForm()) {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -231,10 +261,11 @@ class RegistrarseActivity : AppCompatActivity() {
                             myUser.nombre = binding.nombre.text.toString()
                             myUser.apellido = binding.apellido.text.toString()
                             myUser.numIdentificacion = binding.identificacion.text.toString().toDouble()
-                            myUser.latitud = 1.80
-                            myUser.longitud = 80.0
+                            myUser.latitud = 4.8090
+                            myUser.longitud = -74.1690
                             myUser.disponible = true
                             myUser.toastMostrado = false
+                            myUser.tipo = tipoUser
                             myUser.uid = auth.currentUser!!.uid
                             myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
                             myRef.setValue(myUser)
