@@ -36,7 +36,7 @@ class menu_principal : AppCompatActivity() {
 
 
         var vetDom=findViewById<Button>(R.id.vetDom)
-        var uid = intent.getStringExtra("uid")
+        var user = intent.getStringExtra("user")
         auth = Firebase.auth
         myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
         myRef02 = database.getReference(PATH_USERS)

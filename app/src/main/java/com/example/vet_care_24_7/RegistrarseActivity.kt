@@ -172,6 +172,8 @@ class RegistrarseActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -203,10 +205,11 @@ class RegistrarseActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            startMenuActivity(currentUser)
+            if (currentUser != null ) {
+                startMenuActivity(currentUser)
+            }
         }
-    }
+
 
     private fun validateForm(): Boolean {
         var valid = true
@@ -245,6 +248,15 @@ class RegistrarseActivity : AppCompatActivity() {
         } else {
             binding.identificacion.error = null
         }
+
+        val celular = binding.editTextPhone.text.toString()
+        if (TextUtils.isEmpty(celular)) {
+            binding.editTextPhone.error = "Required."
+            valid = false
+        } else {
+            binding.editTextPhone.error = null
+        }
+
         return valid
     }
 
@@ -266,11 +278,14 @@ class RegistrarseActivity : AppCompatActivity() {
                             myUser.disponible = true
                             myUser.toastMostrado = false
                             myUser.tipo = tipoUser
+                            myUser.celular= binding.editTextPhone.text.toString().toLong()
+                            
                             myUser.uid = auth.currentUser!!.uid
                             myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
                             myRef.setValue(myUser)
                             saveImage()
                             updateUI(user)
+
                         }
                     } else {
                         Toast.makeText(

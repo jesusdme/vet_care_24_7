@@ -13,6 +13,9 @@ public class Persona {
 
     private String tipo;
 
+    private long celular;
+
+
     public Persona() {
 
     }
@@ -85,6 +88,14 @@ public class Persona {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public long getCelular() {
+        return celular;
+    }
+
+    public void setCelular(long celular) {
+        this.celular = celular;
     }
 }
 
