@@ -164,8 +164,8 @@ class RegistrarseActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_IMAGE_PICKER)
     }
 
-    private fun startMapsActivity(currentUser: FirebaseUser?) {
-        val intent = Intent(this, MapsActivity::class.java)
+    private fun startMenuActivity(currentUser: FirebaseUser?) {
+        val intent = Intent(this, menu_principal::class.java)
         if (currentUser != null) {
             intent.putExtra("user", currentUser.email)
         }
@@ -204,7 +204,7 @@ class RegistrarseActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startMapsActivity(currentUser)
+            startMenuActivity(currentUser)
         }
     }
 
