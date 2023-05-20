@@ -144,8 +144,6 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.uiSettings.isZoomGesturesEnabled = true
-        mMap.uiSettings.isZoomControlsEnabled = true
         requestLocationFunction()
     }
 

@@ -169,6 +169,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        val intent = Intent(this, menu_principal::class.java)
+        startActivity(intent)
+
         requestLocationFunction()
     }
 
