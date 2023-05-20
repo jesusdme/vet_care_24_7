@@ -284,6 +284,7 @@ class RegistrarseActivity : AppCompatActivity() {
         }
     }
 
+
     private fun openCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {

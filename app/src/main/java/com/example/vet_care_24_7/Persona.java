@@ -53,6 +53,7 @@ public class Persona {
         this.numIdentificacion = numIdentificacion;
     }
 
+
     public double getLatitud() {
         return latitud;
     }

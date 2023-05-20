@@ -306,4 +306,5 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
 
+
 }

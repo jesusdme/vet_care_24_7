@@ -59,6 +59,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
                     }
                 }
 
+
                 usuariosAdapter.notifyDataSetChanged()
             }
 

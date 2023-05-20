@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".menu_principal">
 
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="415dp"
@@ -60,8 +61,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" /><![CDATA[
-
-    />
-]]>
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

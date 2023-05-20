@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                 // No necesitamos hacer nada aquí, pero el método debe ser implementado
             }
 
+
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Error al obtener datos", error.toException())
             }

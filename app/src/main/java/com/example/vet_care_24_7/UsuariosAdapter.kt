@@ -33,6 +33,7 @@ class UsuariosAdapter(
         return UsuarioViewHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: UsuarioViewHolder, position: Int) {
         val usuario = listaUsuarios[position]
 
