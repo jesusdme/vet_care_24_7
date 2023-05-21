@@ -57,6 +57,8 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var myRef_02: DatabaseReference
     private lateinit var auth: FirebaseAuth
     var previousMarker: Marker? = null
+    lateinit var numero:String
+    lateinit var nombreVeterinario:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -183,6 +185,9 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
                                 }
                             }
                         }
+
+                        numero= persona.celular.toString()
+                        nombreVeterinario = persona.nombre.toString() + " " + persona.apellido.toString()
 
                         newDistanceForInteraction(persona.latitud, persona.longitud)
 
@@ -312,22 +317,24 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
         }
         return true
     }
+
     fun gotoWhatsapp() {
 
-        val uri = Uri.parse("number here")
+        val phoneNumber = "+573165271561"
+        val message = "Hola, $nombreVeterinario. Deseo usar tus servicios de veterinaria."
+        val encodedMessage = Uri.encode(message)
+        val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber&text=$encodedMessage")
 
-        val intent = Intent(Intent.ACTION_SENDTO, uri)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.setPackage("com.whatsapp")
 
         if (intent.resolveActivity(this.packageManager) != null) {
             startActivity(intent)
         } else {
             Toast.makeText(this, "Sth went wrong in Whatsapp func!", Toast.LENGTH_SHORT).show()
-
-
         }
-    }
 
+    }
 
 
 }
