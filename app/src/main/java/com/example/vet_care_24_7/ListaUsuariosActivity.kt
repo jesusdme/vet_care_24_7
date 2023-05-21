@@ -10,17 +10,21 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 
 
 class ListaUsuariosActivity : AppCompatActivity() {
 
-
+    private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var usuariosAdapter: UsuariosAdapter
-
+    val PATH_USERS="users/"
+    var califica=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,15 @@ class ListaUsuariosActivity : AppCompatActivity() {
 
 
         database = FirebaseDatabase.getInstance()
+        auth = Firebase.auth
+
+
+        val servList = intent.getStringArrayListExtra("arrayListKey")
+        if (servList != null) {
+            agregarServ(servList)
+        }
+
+
         val listaUsuarios: MutableList<Persona> = mutableListOf()
         val recyclerViewUsuarios: RecyclerView = findViewById(R.id.recyclerViewUsuarios)
         usuariosAdapter = UsuariosAdapter(listaUsuarios, object : UsuariosAdapter.OnVerPosicionClickListener {
@@ -49,10 +62,18 @@ class ListaUsuariosActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 listaUsuarios.clear()
 
+                //obtener la lista de servicios del usuario
+
                 for (usuarioSnapshot in dataSnapshot.children) {
                     val usuario = usuarioSnapshot.getValue(Persona::class.java)
                     if (usuario != null) {
-                        if(usuario.disponible && usuario.tipo=="Vet")
+
+                        if (servList != null) {
+                            califica=tienenElementosEnComun(servList, usuario.servicio as ArrayList<String>)
+                        }
+
+
+                        if(usuario.disponible && usuario.tipo=="Vet"&& califica==true )// &&califica==true)
                             usuario?.let {
                                 listaUsuarios.add(usuario)
                             }
@@ -69,5 +90,42 @@ class ListaUsuariosActivity : AppCompatActivity() {
             }
         })
     }
+
+
+
+
+    private fun agregarServ(servicios: ArrayList<String>) {
+        var myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
+
+        val servicioRef = myRef.child("servicio")
+
+        // Obtener la lista actual del nodo "servicio"
+        servicioRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val disponibleList = dataSnapshot.getValue(object : GenericTypeIndicator<ArrayList<String>>() {})
+
+                    if (disponibleList != null) {
+                        tienenElementosEnComun(servicios,disponibleList)
+                    }
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                // Ocurrió un error al leer los datos de Firebase
+            }
+        })
+    }
+    fun tienenElementosEnComun(arrayList1: ArrayList<String>, arrayList2: ArrayList<String>): Boolean {
+        val intersection = ArrayList<String>(arrayList1)
+        intersection.retainAll(arrayList2)
+
+        return intersection.size > 0
+
+    }
+
+
+
+
 
 }

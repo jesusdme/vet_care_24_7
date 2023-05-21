@@ -10,13 +10,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.database.FirebaseDatabase
 
-class servicios : AppCompatActivity() {
-
+class seleccionarServ : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var myRef: DatabaseReference
     private lateinit var myRef02: DatabaseReference
@@ -37,9 +36,12 @@ class servicios : AppCompatActivity() {
     private lateinit var cancelar: Button
     private lateinit var env: Button
 
+    private var servSoli=""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_servicios)
+        setContentView(R.layout.activity_seleccionar_serv)
 
         auth = Firebase.auth
         myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
@@ -56,12 +58,14 @@ class servicios : AppCompatActivity() {
         Dermatol = findViewById(R.id.Dermatol)
         Geria = findViewById(R.id.Geria)
         general = findViewById(R.id.general)
-        cancelar = findViewById(R.id.cancelarVet)
-        env = findViewById(R.id.enviarVet)
+        cancelar = findViewById(R.id.cancelarCli)
+        env = findViewById(R.id.enviarCli)
 
 
-        val cancelar=findViewById<Button>(R.id.cancelarVet)
-        val env=findViewById<Button>(R.id.enviarVet)
+
+
+        val cancelar=findViewById<Button>(R.id.cancelarCli)
+        val env=findViewById<Button>(R.id.enviarCli)
 
         cancelar.setOnClickListener{
             val intent = Intent(this, menu_principal::class.java)
@@ -70,17 +74,11 @@ class servicios : AppCompatActivity() {
         }
 
         env.setOnClickListener{
-
             mirarCajas()
-
-
-            val intent = Intent(this, menu_principal::class.java)
-            startActivity(intent)
-
         }
-
-
     }
+
+
 
     private fun mirarCajas() {
         val serviciosSeleccionados = ArrayList<String>()
@@ -122,45 +120,9 @@ class servicios : AppCompatActivity() {
             serviciosSeleccionados.add(general.text.toString())
         }
 
-        agregarServ(serviciosSeleccionados)
+        val intent = Intent(this, ListaUsuariosActivity::class.java)
+        intent.putStringArrayListExtra("arrayListKey", serviciosSeleccionados)
+        startActivity(intent)
     }
-
-    private fun agregarServ(servicios: ArrayList<String>) {
-        val servicioRef = myRef.child("servicio")
-
-        // Obtener la lista actual del nodo "servicio"
-        servicioRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    val disponibleList = dataSnapshot.getValue(object : GenericTypeIndicator<ArrayList<String>>() {})
-
-                    // Verificar si la lista es nula y crear una nueva lista en caso afirmativo
-                    val updatedList = disponibleList ?: ArrayList()
-
-                    // Agregar los servicios seleccionados a la lista
-                    updatedList.addAll(servicios)
-
-                    // Eliminar duplicados utilizando un conjunto
-                    val uniqueSet = LinkedHashSet(updatedList)
-                    updatedList.clear()
-                    updatedList.addAll(uniqueSet)
-
-                    // Actualizar la lista en Firebase
-                    servicioRef.setValue(updatedList)
-                        .addOnSuccessListener {
-                            // La lista se actualizó correctamente
-                        }
-                        .addOnFailureListener { error ->
-                            // Ocurrió un error al actualizar la lista
-                        }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Ocurrió un error al leer los datos de Firebase
-            }
-        })
-    }
-
 
 }

@@ -40,14 +40,13 @@ class menu_principal : AppCompatActivity() {
 
         var vetDom=findViewById<Button>(R.id.vetDom)
         var user = intent.getStringExtra("user")
-        var ee = findViewById<TextView>(R.id.textView10)
         auth = Firebase.auth
         myRef = database.getReference(PATH_USERS+auth.currentUser!!.uid)
         myRef02 = database.getReference(PATH_USERS)
         //myRef02 = database.getReference(PATH_USERS)
         var tipo=""
         vetDom.setOnClickListener {
-            val intent = Intent(this, ListaUsuariosActivity::class.java)
+            val intent = Intent(this, seleccionarServ::class.java)
             startActivity(intent)
         }
 
@@ -58,9 +57,6 @@ class menu_principal : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Obtén el valor actual del campo "tipo"
                 tipo = dataSnapshot.getValue(String::class.java).toString()
-
-                // Imprime el valor en la consola o haz lo que desees con él
-                ee.text=tipo
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -83,8 +79,13 @@ class menu_principal : AppCompatActivity() {
         }
 
         serv.setOnClickListener {
-            val intent = Intent(this, servicios::class.java)
-            startActivity(intent)
+            if (tipo !="cliente") {
+                val intent = Intent(this, servicios::class.java)
+                startActivity(intent)
+            }
+            else
+                Toast.makeText(this, "No disponible para clientes", Toast.LENGTH_LONG).show()
+
 
         }
 
