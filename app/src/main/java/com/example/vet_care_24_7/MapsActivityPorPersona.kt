@@ -8,10 +8,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -70,6 +72,11 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+
+        val wha=findViewById<Button>(R.id.contactar)
+        wha.setOnClickListener {
+            gotoWhatsapp()
+        }
         mLocationRequest = createLocationRequest()
 
         mLocationCallback = object : LocationCallback() {
@@ -305,6 +312,22 @@ class MapsActivityPorPersona : AppCompatActivity(), OnMapReadyCallback {
         }
         return true
     }
+    fun gotoWhatsapp() {
+
+        val uri = Uri.parse("number here")
+
+        val intent = Intent(Intent.ACTION_SENDTO, uri)
+        intent.setPackage("com.whatsapp")
+
+        if (intent.resolveActivity(this.packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Sth went wrong in Whatsapp func!", Toast.LENGTH_SHORT).show()
+
+
+        }
+    }
+
 
 
 }
